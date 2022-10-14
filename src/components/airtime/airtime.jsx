@@ -1,10 +1,12 @@
 import React,{useState,useEffect} from 'react'
 import {useNavigate} from "react-router-dom"
 import {useSelector,useDispatch} from "react-redux"
+import {toast} from "react-toastify"
 import { AirtimeThunk ,selectPreTX,Reset} from '../../redux/auth/TXSlice'
 import "./airtime.css"
 
 function Airtime() {
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const [airtimeData, setAirtimeData] = useState({amount:"",phone:""})
@@ -13,17 +15,20 @@ function Airtime() {
     e.preventDefault()
     setAirtimeData(prev=>({...prev,[e.target.name]:e.target.value}))
    }
+   const AirtimeTX = useSelector(selectPreTX)
 
    const AirtimeFUN = function (e) {
     e.preventDefault()
     if(airtimeData.amount && airtimeData.phone){
       dispatch(AirtimeThunk(airtimeData))
+       dispatch(Reset(AirtimeTX))
+       console.log(AirtimeTX)
     }
    }
     
-   const AirtimeTX = useSelector(selectPreTX)
+
    useEffect(()=>{
-    dispatch(Reset())
+    dispatch(Reset(AirtimeTX))
   },[])
 
    useEffect(()=>{
@@ -37,6 +42,7 @@ function Airtime() {
         toast.error(msg,{position: toast.POSITION.TOP_CENTER})
       } 
       } 
+
     checkAirtime()
   },[AirtimeTX])
   

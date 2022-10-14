@@ -4,8 +4,7 @@ import axios from "axios"
 import {getUserInfo} from "../../auth/authIndex"
 import Loan from "../../components/loan/loan"
 
-const  URL = "http://localhost:4040/api/tx/"
-
+const  URL = `${process.env.REACT_APP_API_URL}/tx/`
 
 const initialState = {
     status:"",
@@ -13,22 +12,22 @@ const initialState = {
     error:""
  }
   
- let token = getUserInfo()?.token
+// const config = {
+//     headers:{
+//         token:token,
+//         SecUSerInfo: SecUSerInfo,
+//     }
+// }
 
- let SecUSerInfo = getUserInfo()?.SecUSerInfo
-
-
-
+export const PreTransferThunk = createAsyncThunk("Transfers/PreTransferThunk", async(AccNumber,thunkApi)=>{
+    let token = await getUserInfo()?.token
+    let SecUSerInfo = await getUserInfo()?.SecUSerInfo 
 const config = {
     headers:{
         token:token,
         SecUSerInfo: SecUSerInfo,
     }
-}
-
-export const PreTransferThunk = createAsyncThunk("Transfers/PreTransferThunk", async(AccNumber,thunkApi)=>{
-    console.log(AccNumber,token);
-     
+}  
     try {
         let respo = await axios.post(URL+"pretransfer",AccNumber,config);
         return respo.data
@@ -40,6 +39,16 @@ export const PreTransferThunk = createAsyncThunk("Transfers/PreTransferThunk", a
 
 export const TransferThunk = createAsyncThunk("Transfers/TransferThunk", async(userdata,thunkApi)=>{
     console.log(userdata);
+    let token = await getUserInfo()?.token
+
+    let SecUSerInfo = await getUserInfo()?.SecUSerInfo
+    
+const config = {
+    headers:{
+        token:token,
+        SecUSerInfo: SecUSerInfo,
+    }
+}
      
     try {
         let respo = await axios.post(URL+"transfer",userdata,config);
@@ -52,6 +61,17 @@ export const TransferThunk = createAsyncThunk("Transfers/TransferThunk", async(u
 
 export const LoanThunk = createAsyncThunk("Transfers/LoanThunk", async(userdata,thunkApi)=>{
     console.log(userdata);
+
+    let token = await getUserInfo()?.token
+
+    let SecUSerInfo = await getUserInfo()?.SecUSerInfo
+    
+const config = {
+    headers:{
+        token:token,
+        SecUSerInfo: SecUSerInfo,
+    }
+}
     try {
         let respo = await axios.post(URL+"loan",userdata,config);
         return respo.data
@@ -63,7 +83,16 @@ export const LoanThunk = createAsyncThunk("Transfers/LoanThunk", async(userdata,
 
 
 export const AirtimeThunk = createAsyncThunk("Transfers/AirtimeThunk", async(userdata,thunkApi)=>{
+
     console.log(userdata);
+    let token = await getUserInfo()?.token
+    let SecUSerInfo = await getUserInfo()?.SecUSerInfo 
+const config = {
+    headers:{
+        token:token,
+        SecUSerInfo: SecUSerInfo,
+    }
+}
     try {
         let respo = await axios.post(URL+"airtime",userdata,config);
         return respo.data

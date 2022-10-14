@@ -48,11 +48,11 @@ function Transactions({TheValues}) {
           <p> The Stack</p>
          </div>
          <div className='secondMessage'> 
-          <p>baBefore</p>
+          <p>baAfter</p>
           <p>₦{TheValues.balanceAfter.$numberDecimal}</p>
          </div>
          <div className='thirdMessage'> 
-          <p>baAfter</p>
+          <p> baBefore</p>
           <p>₦{TheValues.balanceBefore.$numberDecimal}</p>
          </div>
       </div>

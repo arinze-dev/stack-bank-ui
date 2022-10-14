@@ -24,15 +24,12 @@ function Loan() {
   
   const LoanFUNC = function(e){
       e.preventDefault()
-      
       if(LoanData.amount){
-        dispatch(LoanThunk(LoanData)) 
-     }
- }
+        dispatch(LoanThunk(LoanData))
+         dispatch(Reset(LoanTx))
+       }
+    }
 
- useEffect(()=>{
-  dispatch(Reset())
-},[])
 
   useEffect(()=>{
     async function checkLoan(){
@@ -42,7 +39,6 @@ function Loan() {
       }else if(LoanTx.error){ 
         let msg = await LoanTx.error || "Something went wrong";
         // msg = msg.split(' ').splice(0,11).join(" ")
-
         toast.error(msg,{position: toast.POSITION.TOP_CENTER})
       } 
     } 

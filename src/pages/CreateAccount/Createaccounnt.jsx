@@ -15,7 +15,11 @@ function Createaccounnt() {
     const IfRegitered = useSelector(selectRegistered)
     const dispatch = useDispatch()
     const { register, handleSubmit,reset ,formState:{errors}} = useForm()
+   
     
+    useEffect(()=>{
+      Reset()
+    })
    
   const onSubmit = (data) => {
       try {
@@ -31,7 +35,8 @@ function Createaccounnt() {
         dispatch(Register(userdata))
         reset();
       }else{
-        throw new Error("comfirmpassword doesn't match password")
+        
+        toast.error("comfirmpassword doesn't match password",{position:toast.TOP_CENTER}) 
       }
     } catch (error) {
       toast.error(error,{position:toast.TOP_CENTER}) 
@@ -39,18 +44,17 @@ function Createaccounnt() {
   }
    useEffect(()=>{
      if(IfRegitered.status== "Fulfilled"){
-      toast.success(IfRegitered.user.message,{position: toast.POSITION.TOP_CENTER})
+      toast.success(IfRegitered.userRegister?.message,{position: toast.POSITION.TOP_CENTER})
       sessionStorage.setItem("Registered","true")
       navigate("/login")
       Reset()
      }else if(IfRegitered.error){
       toast.error(IfRegitered.error,{position: toast.POSITION.TOP_CENTER})
-      Reset()
      }
    },[IfRegitered])
 
    { console.log(IfRegitered.status)}
-   { console.log(IfRegitered.user.message)}
+   { console.log(IfRegitered.userRegister?.message)}
 
   return (
     <div className='create-cont'>

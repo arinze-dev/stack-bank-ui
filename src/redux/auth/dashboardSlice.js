@@ -2,8 +2,7 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit"
 import axios from "axios"
 import {getUserInfo} from "../../auth/authIndex"
 
-const  URL = "http://localhost:4040/api/user"
-
+const  URL = `${process.env.REACT_APP_API_URL}/user`
 
 const initialState = {
     status:"",
@@ -15,9 +14,7 @@ const initialState = {
 
 
 export const dashDoardThunnk = createAsyncThunk("dashdoard/dashDoardSlice", async(_,thunkApi)=>{
-
     let token = await getUserInfo().token 
-
     const config = {
         headers:{
             token:token
@@ -37,7 +34,6 @@ export const dashDoardThunnk = createAsyncThunk("dashdoard/dashDoardSlice", asyn
  const dashDoardSlice = createSlice({
     name: "dashdoard",
     initialState,
-    
     extraReducers:(builder)=>{
         builder.addCase(dashDoardThunnk.pending,(state)=>{
             state.status ="pending"

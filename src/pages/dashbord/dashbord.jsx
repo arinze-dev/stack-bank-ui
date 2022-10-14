@@ -14,11 +14,9 @@ import "./dashbord.css"
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { dashboard } = useSelector(selectDashBoard)
+  // const { dashboard } = useSelector(selectDashBoard)
 
   const[display,setDisplay] = useState({Transfer:"",Airtime:"",Loan:"",Dashbord:"true"})
-
-
 
   const [userTX, setUserTX] = useState()
 
@@ -26,9 +24,6 @@ import "./dashbord.css"
   
   let {data, error,status} = userDetail
 
-  useEffect(()=>{
-     navigate("/dashbord")
-  },[status])
 
   useEffect(()=>{
     dispatch(dashDoardThunnk())
@@ -36,7 +31,6 @@ import "./dashbord.css"
   
   useEffect(()=>{
     userDetail.data && setUserTX(userDetail.data.accountDetails)
-    
   },[dispatch,userDetail])
   
 
@@ -44,15 +38,16 @@ import "./dashbord.css"
   const logout = function(){
      sessionStorage.removeItem("userInfo")
      window.location.href ="/"
-  }
-
-     
+  }     
   let DisplyOption = function (e) {
     setDisplay({Transfer:"",Airtime:"",Loan:"",Dashbord:""})
     setDisplay((prev)=> ({...prev, [e.target.name]: "true"}))
-  }
 
-  return (
+    if(e.target.value === "Dashbord" ){
+      dispatch(dashDoardThunnk())
+    }
+  }
+    return (
     <div className='dashbord'>
       <div className='side-dashbord'>
         <div className='features'>

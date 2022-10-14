@@ -18,6 +18,11 @@ function Login() {
   const navigate = useNavigate()
   const IfLogin = useSelector(selectlogedin)
 
+  useEffect(()=>{
+    Reset()
+    sessionStorage.removeItem("userInfo")
+  },[])
+
  const login = function (data) {
   dispatch(LoginThunk(data))
     reset()
@@ -28,10 +33,12 @@ function Login() {
         if (IfLogin.status == "Fulfilled") {
           let message = `welcome ${IfLogin.user.name}`
           toast.success(message,{position: toast.POSITION.TOP_CENTER})
-          sessionStorage.setItem("userInfo",JSON.stringify(IfLogin.user))
-          setTimeout(() => {
-            navigate("/dashbord")
-          }, 2000);
+          
+
+             if(IfLogin.user.name ){
+              sessionStorage.setItem("userInfo",JSON.stringify(IfLogin.user))
+              navigate("/dashbord")
+             }
         }else if(IfLogin.error){  
           let msg =  IfLogin.error;
           // console.log(msg);

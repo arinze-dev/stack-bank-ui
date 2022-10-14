@@ -59,12 +59,13 @@ function Transfer() {
   const MainTransfer = function (e) {
     e.preventDefault()
     dispatch(TransferThunk(TxData))
+    dispatch(Reset(PreData))
   }
 
 
 
   useEffect(()=>{
-    dispatch(Reset())
+    dispatch(Reset(PreData))
   },[])
 
   useEffect(()=>{
@@ -87,7 +88,7 @@ function Transfer() {
 
   return (
     <div className='content-transter'>
-        <div className='details'><button onClick={backFun}>Back</button>  <h4>Transter Form</h4> </div>
+        <div className='details'> <h4>Transter Form</h4> </div>
       <form action="">
           <input type="number" placeholder='Amount' onChange={checkOthers} name='amount' /> 
          { TxData.amount &&  <input type="text" placeholder='Message' onChange={checkOthers} name='message' /> }
