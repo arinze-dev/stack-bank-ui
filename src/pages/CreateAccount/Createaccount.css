@@ -1,0 +1,63 @@
+
+.create-cont{
+    background-color: aliceblue;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+.main-create{
+  background-color: #0DB8A8;
+   display: flex;
+   justify-content: center;
+   width: 80%;
+}
+
+.labal-create{
+    width: 45%;
+   text-align: center;
+   align-self: center;
+  
+}
+
+.labal-create h2{
+   font-size: 60px;
+   color: #FDFDFD;
+}
+
+.content-create{
+    background-color: #FDFDFD;
+    width: 65%;
+    text-align: center;
+    padding: 30px 35px;   
+}
+.content-create h1{
+  margin-bottom: 20px;  
+}
+.content-create form{
+    text-align: center;
+    padding: 0px 30px;
+}
+
+.content-create input{
+    align-self: center;
+    display: block;
+    padding: 10px 30px;
+    font-size: 16px;
+    outline: none;
+    margin: 6px auto;
+    border: none;
+    width: 90%;
+    background-color: #EBF9E8;
+}
+.content-create button{
+    padding:10px 60px;
+    margin: 14px;
+}
+.errorStyle{
+    color: red;
+    margin: 0;
+    font-size: 13px;
+}
+

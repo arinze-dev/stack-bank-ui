@@ -1,0 +1,42 @@
+
+.content-transter{
+    padding: 20px 40px;
+    background-color: rgb(152, 152, 94);
+    width: 90%;
+}
+.content-transter .details{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+.content-transter .details h4{
+  width: 60%;
+  font-size: 20px;
+  color: antiquewhite;
+}
+
+.content-transter .details button{
+  background: none;
+  color: white;
+}
+.content-transter form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.content-transter form input{
+    padding: 6px 10px; 
+    width: 85%;
+    margin-bottom: 20px;
+    font-size: 18px;
+    outline: none;
+    border-radius: 6px;
+    border: none;
+}
+
+.content-transter form button{
+    padding: 10px; 
+    width: 30%;
+    margin-bottom: 10px;
+    font-size: 18px;
+}

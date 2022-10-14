@@ -1,0 +1,91 @@
+
+
+
+.login-cont{
+    background-color: aliceblue;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.main-div{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #0DB8A8;
+  width: 65%;
+}
+
+.labal-div{
+    text-align: center;
+    align-self: center;
+    width: 45%;
+    padding: 20px;
+    color: white;
+    text-transform: uppercase;
+}
+.labal-div h1{
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+.labal-div h2{
+    font-size: 30px;
+    margin-top: 10px;
+  }
+  
+
+
+.content-dev{
+    width: 55%;
+    text-align: center;
+    background-color: #FDFDFD;
+    padding: 30px 35px;
+}
+.content-dev h1{
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+.content-dev form{
+    display: flex;
+    flex-direction: column;
+   align-items: center; 
+}
+.content-dev p{
+  font-size: 14px;
+  text-transform: capitalize;
+}
+.content-dev p a{
+   text-decoration: none;
+   color: rgb(139, 161, 217);
+
+}
+.content-dev input{
+    align-self: center;
+    display: block;
+    padding: 10px 10px;
+    font-size: 16px;
+    /* text-transform: capitalize; */
+    outline: none;
+    margin: 15px 0;
+    border: none;
+    width: 90%;
+    background-color: #EBF9E8;
+}
+
+.content-dev button{
+    border-radius: 30px;
+    width: 60%;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+
+.errorStyle{
+  color: red;
+  margin: 0;
+  font-size: 13px;
+}

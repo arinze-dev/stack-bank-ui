@@ -1,0 +1,72 @@
+
+
+.home-main{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+.left-side{
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    background-color: #0DB8A8;
+    text-transform: uppercase;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+ .left-side-inner{
+    color: white;
+ }
+ .left-side-inner h1{
+    font-size: 60px;
+    margin: 30px;
+}
+.left-side-inner h1:first-child{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.left-side-inner h3{
+    margin-bottom: 20px;
+}
+
+.btn-area{
+  display: flex;
+  padding: 10px;
+  justify-content: space-evenly;
+}
+hr{
+    margin: 10px;
+}
+.btn-area button{
+    background-color:#ECF8EA ;
+    padding: 8px 20px;
+    font-size: 24px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgb(84, 84, 84);
+    cursor: pointer;
+}
+
+.btn-area button a{
+    color: black;
+    text-decoration: none;
+    font-style: italic;
+}
+.btn-area button:hover{
+    color: white;
+    background-color:#3e6937 ;
+}
+.btn-area button:hover a{
+    color: white;
+} 
+.right-side{
+    width: 50%;
+    background: url("../../assets/undraw_Success.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100%,80%;
+}

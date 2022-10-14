@@ -1,0 +1,76 @@
+
+
+
+.transactionDetail{
+  /* padding: 4px 12px; */
+  border-left: 8px solid rgb(96, 157, 39);
+  margin-bottom: 30px;
+  box-shadow: 2px 0px 3px rgb(0, 0, 0);
+  width: 92%;
+}
+  
+
+
+.tx-type{
+   background-color: rgba(0, 255, 255, 0.212);
+  display: flex;
+
+}
+
+.tx-type h5{
+   font-size: 22px;
+   text-transform: capitalize;
+   padding: 10px;
+   display: inline-block;
+  }
+
+.transactionDetail .tx-div-2,
+.transactionDetail .tx-div-3,
+.transactionDetail .tx-div-4,
+.transactionDetail .tx-div-5{
+  display: flex;
+  padding: 7px;
+  padding-top: 0;
+}
+
+.tx-div-2 .firstMessage,
+.tx-div-2 .secondMessage,
+.tx-div-3 .firstMessage,
+.tx-div-3 .secondMessage,
+.tx-div-4 .firstMessage,
+.tx-div-4 .secondMessage,
+.tx-div-5 .firstMessage,
+.tx-div-5 .secondMessage,
+.tx-div-5 .thirdMessage{
+    display: flex;
+    width: 40%;
+    justify-content: flex-start;
+}
+
+
+
+.tx-div-2 .firstMessage p,
+.tx-div-2 .secondMessage p,
+.tx-div-3 .firstMessage p,
+.tx-div-3 .secondMessage p,
+.tx-div-4 .firstMessage p,
+.tx-div-4 .secondMessage p,
+.tx-div-5 .firstMessage p,
+.tx-div-5 .secondMessage p,
+.tx-div-5 .thirdMessage p{
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+ .tx-div-2 .firstMessage p:first-child,
+.tx-div-2 .secondMessage p:first-child,
+.tx-div-3 .firstMessage p:first-child,
+.tx-div-3 .secondMessage p:first-child,
+.tx-div-4 .firstMessage p:first-child,
+.tx-div-4 .secondMessage p:first-child,
+.tx-div-5 .firstMessage p:first-child,
+.tx-div-5 .secondMessage p:first-child,
+.tx-div-5 .thirdMessage p:first-child{
+  margin-right: 10px;
+  font-size: 14px;
+}
