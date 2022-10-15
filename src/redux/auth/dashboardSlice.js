@@ -3,7 +3,7 @@ import axios from "axios"
 import {getUserInfo} from "../../auth/authIndex"
 import {config} from "../../utils/config"
 config.config()
-const  URL = `${config.API_URL}user`
+const  URL = `${config.API_URL}user/`
 
 const initialState = {
     status:"",
