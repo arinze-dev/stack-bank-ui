@@ -13,22 +13,17 @@ const initialState = {
     error:""
  }
   
-// const config = {
-//     headers:{
-//         token:token,
-//         SecUSerInfo: SecUSerInfo,
-//     }
-// }
-
 export const PreTransferThunk = createAsyncThunk("Transfers/PreTransferThunk", async(AccNumber,thunkApi)=>{
     let token = await getUserInfo()?.token
     let SecUSerInfo = await getUserInfo()?.SecUSerInfo 
 const config = {
     headers:{
+        'Content-Type': 'application/json',
         token:token,
         SecUSerInfo: SecUSerInfo,
     }
-}  
+} 
+
     try {
         let respo = await axios.post(URL+"pretransfer",AccNumber,config);
         return respo.data
@@ -46,11 +41,12 @@ export const TransferThunk = createAsyncThunk("Transfers/TransferThunk", async(u
     
 const config = {
     headers:{
+        'Content-Type': 'application/json',
         token:token,
         SecUSerInfo: SecUSerInfo,
     }
 }
-     
+    
     try {
         let respo = await axios.post(URL+"transfer",userdata,config);
         return respo.data
@@ -69,6 +65,7 @@ export const LoanThunk = createAsyncThunk("Transfers/LoanThunk", async(userdata,
     
 const config = {
     headers:{
+        'Content-Type': 'application/json',
         token:token,
         SecUSerInfo: SecUSerInfo,
     }
@@ -88,12 +85,14 @@ export const AirtimeThunk = createAsyncThunk("Transfers/AirtimeThunk", async(use
     console.log(userdata);
     let token = await getUserInfo()?.token
     let SecUSerInfo = await getUserInfo()?.SecUSerInfo 
-const config = {
-    headers:{
+     const config = {
+        headers:{
+        'Content-Type': 'application/json',
         token:token,
         SecUSerInfo: SecUSerInfo,
-    }
-}
+       }
+     }
+
     try {
         let respo = await axios.post(URL+"airtime",userdata,config);
         return respo.data

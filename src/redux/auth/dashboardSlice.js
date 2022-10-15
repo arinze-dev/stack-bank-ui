@@ -18,9 +18,10 @@ export const dashDoardThunnk = createAsyncThunk("dashdoard/dashDoardSlice", asyn
     let token = await getUserInfo().token 
     const config = {
         headers:{
+            'Content-Type': 'application/json',
             token:token
         }
-    }
+    }  
     
     try {
       const respo = await axios.get(URL,config)

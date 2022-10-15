@@ -3,9 +3,15 @@ import axios from "axios"
 import {config} from "../../utils/config"
 config.config()
 const  URL = `${config.API_URL}user/`
+
+
 // Register thunk    
 export const Register = createAsyncThunk("auth/Register", async(userdata, thunkApi)=>{
     try {
+        axios.defaults.headers = {
+            'Content-Type': 'application/json',
+        }
+
       const respo = await axios.post(URL+"register",userdata)    
       return respo.data        
     } catch (error) {
@@ -19,6 +25,10 @@ export const Register = createAsyncThunk("auth/Register", async(userdata, thunkA
 //  login Thunk
 export const LoginThunk = createAsyncThunk("auth/LoginThunk", async(user, thunkApi)=>{
     try {
+        axios.defaults.headers = {
+            'Content-Type': 'application/json',
+        }
+
       const respo = await axios.post(URL+"login",user)    
       return respo.data        
     } catch (error) {
