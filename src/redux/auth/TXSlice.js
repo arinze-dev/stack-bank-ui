@@ -3,8 +3,9 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit"
 import axios from "axios"
 import {getUserInfo} from "../../auth/authIndex"
 import Loan from "../../components/loan/loan"
-
-const  URL = `${process.env.REACT_APP_API_URL}/tx/`
+import {config} from  "../../utils/config"
+config.config()
+const  URL = `${config.API_URL}tx/`
 
 const initialState = {
     status:"",

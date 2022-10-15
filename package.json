@@ -12,6 +12,8 @@
     "@reduxjs/toolkit": "^1.8.5",
     "axios": "^1.0.0",
     "dotenv": "^16.0.3",
+    "env": "^0.0.2",
+    "env-cmd": "^10.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.36.1",

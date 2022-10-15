@@ -1,8 +1,9 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit"
 import axios from "axios"
 import {getUserInfo} from "../../auth/authIndex"
-
-const  URL = `${process.env.REACT_APP_API_URL}/user`
+import {config} from "../../utils/config"
+config.config()
+const  URL = `${config.API_URL}user`
 
 const initialState = {
     status:"",

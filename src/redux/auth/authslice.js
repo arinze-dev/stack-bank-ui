@@ -1,7 +1,8 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit"
 import axios from "axios"
-
-const  URL = `${process.env.REACT_APP_API_URL}/user`
+import {config} from "../../utils/config"
+config.config()
+const  URL = `${config.API_URL}user`
 // Register thunk    
 export const Register = createAsyncThunk("auth/Register", async(userdata, thunkApi)=>{
     try {
