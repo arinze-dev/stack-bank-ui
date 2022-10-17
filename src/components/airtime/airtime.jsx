@@ -1,62 +1,84 @@
-import React,{useState,useEffect} from 'react'
-import {useNavigate} from "react-router-dom"
-import {useSelector,useDispatch} from "react-redux"
-import {toast} from "react-toastify"
-import { AirtimeThunk ,selectPreTX,Reset} from '../../redux/auth/TXSlice'
-import "./airtime.css"
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import { AirtimeThunk, selectPreTX, Reset } from "../../redux/auth/TXSlice";
+import "./airtime.css";
 
 function Airtime() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [airtimeData, setAirtimeData] = useState({amount:"",phone:""})
+  useEffect(() => {
+    Reset();
+  }, []);
 
-   const checkValue = function (e) {
-    e.preventDefault()
-    setAirtimeData(prev=>({...prev,[e.target.name]:e.target.value}))
-   }
-   const AirtimeTX = useSelector(selectPreTX)
+  const [airtimeData, setAirtimeData] = useState({ amount: "", phone: "" });
 
-   const AirtimeFUN = function (e) {
-    e.preventDefault()
-    if(airtimeData.amount && airtimeData.phone){
-      dispatch(AirtimeThunk(airtimeData))
-       dispatch(Reset(AirtimeTX))
-       console.log(AirtimeTX)
+  const checkValue = function (e) {
+    e.preventDefault();
+    setAirtimeData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const AirtimeTX = useSelector(selectPreTX);
+
+  const AirtimeFUN = function (e) {
+    e.preventDefault();
+    if (airtimeData.amount && airtimeData.phone) {
+      dispatch(AirtimeThunk(airtimeData));
+      dispatch(Reset());
     }
-   }
-    
+  };
 
-   useEffect(()=>{
-    dispatch(Reset(AirtimeTX))
-  },[])
-
-   useEffect(()=>{
-    async function checkAirtime(){
+  useEffect(() => {
+    async function checkAirtime() {
       if (AirtimeTX.status == "Fulfilled") {
-        toast.success(AirtimeTX.data,{position: toast.POSITION.TOP_CENTER})
-        navigate("/dashbord") 
-      }else if(AirtimeTX.error){ 
-        let msg = await AirtimeTX.error || "Something went wrong";
+        {
+          AirtimeTX.data &&
+            toast.success(AirtimeTX.data, {
+              position: toast.POSITION.TOP_CENTER,
+            });
+        }
+        navigate("/dashbord");
+      } else if (AirtimeTX.error) {
+        let msg = (await AirtimeTX.error) || "Something went wrong";
         // msg = msg.split(' ').splice(0,11).join(" ")
-        toast.error(msg,{position: toast.POSITION.TOP_CENTER})
-      } 
-      } 
+        {
+          AirtimeTX.error &&
+            toast.error(msg, { position: toast.POSITION.TOP_CENTER });
+        }
+      }
+      dispatch(Reset());
+    }
 
-    checkAirtime()
-  },[AirtimeTX])
-  
+    checkAirtime();
+  }, [AirtimeTX]);
+
   return (
-    <div className='content-airtime'>
-        <div className='details'><button>Back</button><h4>Airtime Form</h4> </div>
+    <div className="content-airtime">
+      <div className="details">
+        <button>Back</button>
+        <h4>Airtime Form</h4>{" "}
+      </div>
       <form action="">
-          <input type="number" placeholder='Amount'onChange={checkValue} name='amount' /> 
-          <input type="number" placeholder='Phone Number' onChange={checkValue}  name='phone' /> 
-          <button type="button" onClick={AirtimeFUN}>Transfer </button>
+        <input
+          type="number"
+          placeholder="Amount"
+          onChange={checkValue}
+          name="amount"
+        />
+        <input
+          type="number"
+          placeholder="Phone Number"
+          onChange={checkValue}
+          name="phone"
+        />
+        <button type="button" onClick={AirtimeFUN}>
+          Transfer{" "}
+        </button>
       </form>
-
-  </div>
-  )
+    </div>
+  );
 }
 
-export default Airtime
+export default Airtime;
