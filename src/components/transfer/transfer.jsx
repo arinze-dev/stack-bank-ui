@@ -101,12 +101,16 @@ function Transfer() {
     checkTransfer();
   }, [PreData]);
 
-  // if (
-  //   PreData.data == "successful transfer" ||
-  //   PreData.error == "successful transfer"
-  // ) {
-  //   dispatch(Reset());
-  // }
+  // transaction feild
+  // internet error
+
+  if (
+    PreData.data == "successful transfer" ||
+    PreData.error == "transaction feild" ||
+    PreData.error
+  ) {
+    dispatch(Reset());
+  }
 
   return (
     <div className="content-transter">
