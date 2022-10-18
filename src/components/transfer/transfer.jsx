@@ -154,7 +154,6 @@ function Transfer() {
           {TxData.message && (
             <input
               type="number"
-              value={TxData.accountnumber}
               placeholder="Account Number"
               disabled={enable && true}
               onChange={checkValue}
@@ -167,7 +166,6 @@ function Transfer() {
               placeholder="Name"
               name="user"
               value={`${PreData.data?.firstname} ${PreData.data?.lastname}`}
-              readOnly
             />
           )}
 
