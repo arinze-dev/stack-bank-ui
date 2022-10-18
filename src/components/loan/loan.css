@@ -3,6 +3,7 @@
     padding: 20px 40px;
     background-color: rgb(152, 152, 94);
     width: 600px;
+    text-align: center;
 }
 .content-loan .details{
     display: flex;

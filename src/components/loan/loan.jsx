@@ -4,6 +4,7 @@ import { LoanThunk, selectPreTX, Reset } from "../../redux/auth/TXSlice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import {} form
+import { ColorRing } from "react-loader-spinner";
 import { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -11,9 +12,9 @@ function Loan() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(Reset());
-  },[]);
+  // useEffect(() => {
+  //   dispatch(Reset());
+  // }, []);
 
   const LoanTx = useSelector(selectPreTX);
   const [LoanData, setLoanData] = useState({
@@ -51,25 +52,42 @@ function Loan() {
             toast.error(msg, { position: toast.POSITION.TOP_CENTER });
         }
       }
-      dispatch(Reset())
     }
     checkLoan();
   }, [LoanTx]);
+
+  if (LoanTx.status == "rejected" || LoanTx.status == "Fulfilled") {
+    setTimeout(() => {
+      dispatch(Reset());
+    }, 3000);
+  }
 
   return (
     <div className="content-loan">
       <div className="details">
         <h4>Loan Form</h4>{" "}
       </div>
-      <form action="">
-        <input
-          type="text"
-          placeholder="Amount"
-          onChange={CheckLength}
-          name="amount"
+      {LoanTx.status === "pending" ? (
+        <ColorRing
+          visible={true}
+          height="100"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
         />
-        <button onClick={LoanFUNC}>Loan</button>
-      </form>
+      ) : (
+        <form action="">
+          <input
+            type="text"
+            placeholder="Amount"
+            onChange={CheckLength}
+            name="amount"
+          />
+          <button onClick={LoanFUNC}>Loan</button>
+        </form>
+      )}
     </div>
   );
 }

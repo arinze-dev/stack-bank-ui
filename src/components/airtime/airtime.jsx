@@ -2,16 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { ColorRing } from "react-loader-spinner";
 import { AirtimeThunk, selectPreTX, Reset } from "../../redux/auth/TXSlice";
 import "./airtime.css";
 
 function Airtime() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    Reset();
-  }, []);
 
   const [airtimeData, setAirtimeData] = useState({ amount: "", phone: "" });
 
@@ -26,7 +23,6 @@ function Airtime() {
     e.preventDefault();
     if (airtimeData.amount && airtimeData.phone) {
       dispatch(AirtimeThunk(airtimeData));
-      dispatch(Reset());
     }
   };
 
@@ -48,34 +44,51 @@ function Airtime() {
             toast.error(msg, { position: toast.POSITION.TOP_CENTER });
         }
       }
-      dispatch(Reset());
     }
 
     checkAirtime();
   }, [AirtimeTX]);
+
+  if (AirtimeTX.status == "rejected" || AirtimeTX.status == "Fulfilled") {
+    setTimeout(() => {
+      dispatch(Reset());
+    }, 3000);
+  }
 
   return (
     <div className="content-airtime">
       <div className="details">
         <h4>Airtime Form</h4>
       </div>
-      <form action="">
-        <input
-          type="number"
-          placeholder="Amount"
-          onChange={checkValue}
-          name="amount"
+      {AirtimeTX.status == "pending" ? (
+        <ColorRing
+          visible={true}
+          height="160"
+          width="80"
+          ariaLabel="blocks-loading"
+          wrapperStyle={{}}
+          wrapperClass="blocks-wrapper"
+          colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
         />
-        <input
-          type="number"
-          placeholder="Phone Number"
-          onChange={checkValue}
-          name="phone"
-        />
-        <button type="button" onClick={AirtimeFUN}>
-          Transfer{" "}
-        </button>
-      </form>
+      ) : (
+        <form action="">
+          <input
+            type="number"
+            placeholder="Amount"
+            onChange={checkValue}
+            name="amount"
+          />
+          <input
+            type="number"
+            placeholder="Phone Number"
+            onChange={checkValue}
+            name="phone"
+          />
+          <button type="button" onClick={AirtimeFUN}>
+            Transfer{" "}
+          </button>
+        </form>
+      )}
     </div>
   );
 }
