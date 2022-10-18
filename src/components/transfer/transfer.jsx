@@ -55,22 +55,21 @@ function Transfer() {
     // console.log(TxData);
   };
 
-  // const backFun = function (e) {
-  //   e.preventDefault();
-  //   SetTxData({
-  //     amount: "",
-  //     message: "",
-  //     accountnumber: "",
-  //   });
-  //   SetEnable((prev) => !prev);
-  // };
+  const backFun = function (e) {
+    e.preventDefault();
+    SetTxData({
+      amount: "",
+      message: "",
+      accountnumber: "",
+    });
+    SetEnable((prev) => !prev);
+  };
 
   const PreData = useSelector(selectPreTX);
 
   const MainTransfer = function (e) {
     e.preventDefault();
     dispatch(TransferThunk(TxData));
-    dispatch(Reset());
   };
 
   useEffect(() => {
@@ -83,43 +82,49 @@ function Transfer() {
             });
         }
         navigate("/dashbord");
-      } else if (PreData.error) {
-        let msg = await PreData.error.message;
-        let msg2 = await PreData.error.msg;
+      } else if (PreData.status == "rejected") {
+        let msg = await PreData.error;
+        let msg1 = await PreData.error.errMsg;
 
-        console.log(msg, msg2);
         {
           PreData.error &&
             toast.error(msg, { position: toast.POSITION.TOP_CENTER });
         }
+
+        {
+          PreData.error.errMsg &&
+            toast.error(msg1, { position: toast.POSITION.TOP_CENTER });
+        }
+      } else {
+        let msg = await PreData.error;
         {
           PreData.error &&
-            toast.error(msg2, { position: toast.POSITION.TOP_CENTER });
+            toast.error(msg, { position: toast.POSITION.TOP_CENTER });
         }
       }
     }
     checkTransfer();
   }, [PreData]);
 
-  // transaction feild
-  // internet error
-
   if (
     PreData.data == "successful transfer" ||
     PreData.error == "transaction feild" ||
     PreData.error
   ) {
-    dispatch(Reset());
+    setTimeout(() => {
+      dispatch(Reset());
+    }, 3000);
   }
 
   return (
     <div className="content-transter">
       <div className="details">
-        {" "}
-        <h4>Transter Form</h4>{" "}
+        <button onClick={backFun}>Back</button>
+        <h4>Transter Form</h4>
       </div>
       <form action="">
         <input
+          value={TxData.amount}
           type="number"
           placeholder="Amount"
           onChange={checkOthers}
@@ -128,6 +133,7 @@ function Transfer() {
         {TxData.amount && (
           <input
             type="text"
+            value={TxData.message}
             placeholder="Message"
             onChange={checkOthers}
             name="message"
@@ -136,6 +142,7 @@ function Transfer() {
         {TxData.message && (
           <input
             type="number"
+            value={TxData.accountnumber}
             placeholder="Account Number"
             disabled={enable && true}
             onChange={checkValue}
@@ -154,7 +161,7 @@ function Transfer() {
 
         {PreData.data?.firstname && (
           <button type="button" onClick={MainTransfer}>
-            Transfer{" "}
+            Transfer
           </button>
         )}
       </form>

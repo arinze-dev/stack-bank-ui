@@ -57,8 +57,7 @@ function Airtime() {
   return (
     <div className="content-airtime">
       <div className="details">
-        <button>Back</button>
-        <h4>Airtime Form</h4>{" "}
+        <h4>Airtime Form</h4>
       </div>
       <form action="">
         <input

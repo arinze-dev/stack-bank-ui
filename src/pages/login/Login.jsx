@@ -49,7 +49,7 @@ function Login() {
             toast.error(msg, { position: toast.POSITION.TOP_CENTER });
         }
       }
-      dispatch(Reset())
+      // dispatch(Reset())
     }
     checkUser();
   }, [IfLogin]);

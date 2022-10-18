@@ -59,7 +59,7 @@ function Loan() {
   return (
     <div className="content-loan">
       <div className="details">
-        <button>Back</button> <h4>Loan Form</h4>{" "}
+        <h4>Loan Form</h4>{" "}
       </div>
       <form action="">
         <input

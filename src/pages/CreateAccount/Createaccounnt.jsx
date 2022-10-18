@@ -61,7 +61,7 @@ function Createaccounnt() {
       }
       sessionStorage.setItem("Registered", "true");
       navigate("/login");
-      Reset();
+
     } else if (IfRegitered.error) {
       {
         IfRegitered.error &&
@@ -69,7 +69,7 @@ function Createaccounnt() {
             position: toast.POSITION.TOP_CENTER,
           });
       }
-      dispatch(Reset());
+  
     }
   }, [IfRegitered]);
 
